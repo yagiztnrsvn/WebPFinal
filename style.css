@@ -15,6 +15,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background-color: var(--background-color);
@@ -27,6 +31,9 @@ header {
     background-color: var(--header-footer-bg);
     padding: 1rem 5%;
     border-bottom: 1px solid #e0daca;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 nav {
@@ -56,8 +63,8 @@ nav ul li a {
     color: var(--text-color);
     font-weight: 500;
     transition: color 0.3s ease;
-    padding-bottom: 5px; /* Aktif link için alttaki çizgiye yer açar */
-    border-bottom: 2px solid transparent; /* Başlangıçta görünmez çizgi */
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
 }
 
 nav ul li a:hover {
@@ -65,7 +72,7 @@ nav ul li a:hover {
 }
 nav ul li a.active {
     color: var(--primary-color);
-    border-bottom-color: var(--primary-color); /* Aktif linkin altını çizer */
+    border-bottom-color: var(--primary-color);
 }
 
 /* --- Ana İçerik - Hero Bölümü (Anasayfa) --- */
@@ -141,6 +148,13 @@ main {
     color: var(--text-color);
 }
 
+.page-subtitle {
+    text-align: center;
+    max-width: 600px;
+    margin: -2rem auto 3rem auto;
+    color: #5f5753;
+}
+
 /* --- Hakkımda Sayfası Stilleri --- */
 .about-container {
     text-align: center;
@@ -149,7 +163,7 @@ main {
 .about-image {
     width: 250px;
     height: 250px;
-    border-radius: 50%; /* Resmi yuvarlak yapar */
+    border-radius: 50%;
     object-fit: cover;
     margin-bottom: 2rem;
     border: 5px solid var(--header-footer-bg);
@@ -166,6 +180,7 @@ main {
 }
 
 /* --- Hizmetler Sayfası Stilleri --- */
+/* NOT: Bu bölüm zaten auto-fit sayesinde büyük ölçüde mobil uyumluydu! */
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -198,7 +213,7 @@ main {
     flex-wrap: wrap;
 }
 
-.contact-info {
+.contact-info, .contact-form {
     flex: 1;
     min-width: 300px;
 }
@@ -212,6 +227,63 @@ main {
     margin-bottom: 0.8rem;
 }
 
+/* --- Hesaplayıcılar Sayfası Stilleri --- */
+.calculators-container {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.calculator-card {
+    background-color: var(--card-bg);
+    padding: 2rem 2.5rem;
+    border-radius: 8px;
+    border: 1px solid #e0daca;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    flex: 1;
+    min-width: 350px;
+    max-width: 500px;
+}
+
+.calculator-card h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+}
+
+.calculator-card .form-group { margin-bottom: 1.5rem; }
+.calculator-card .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+.calculator-card input,
+.calculator-card select,
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 5px;
+    border: 1px solid #dcd1c1;
+    background-color: #fff;
+    font-family: inherit;
+    font-size: 1rem;
+}
+.calculator-card input:focus,
+.calculator-card select:focus,
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(210, 180, 140, 0.5);
+}
+.calculator-card .cta-button { width: 100%; margin-top: 1rem; font-size: 1.1rem; }
+.result-area { margin-top: 2rem; padding: 1.5rem; border-radius: 8px; background-color: var(--background-color); text-align: center; min-height: 80px; transition: all 0.3s ease; }
+.result-area p { margin: 0.5rem 0; font-size: 1.1rem; }
+.result-area .error { color: #D8000C; font-weight: bold; }
+.bmi-category { padding: 3px 8px; border-radius: 4px; color: white; font-weight: bold; }
+.bmi-category.zayif { background-color: #3498db; }
+.bmi-category.normal { background-color: #2ecc71; }
+.bmi-category.kilolu { background-color: #f1c40f; color: #4A4441; }
+.bmi-category.obez { background-color: #e74c3c; }
+.calorie-total { font-size: 2.5rem !important; font-weight: bold; color: var(--primary-color); }
 
 /* --- Footer --- */
 footer {
@@ -222,109 +294,111 @@ footer {
     border-top: 1px solid #e0daca;
     font-size: 0.9rem;
     color: #7d736c;
-}   
-/* --- Hesaplayıcılar Sayfası Stilleri --- */
-
-.page-subtitle {
-    text-align: center;
-    max-width: 600px;
-    margin: -2rem auto 3rem auto;
-    color: #5f5753;
 }
 
-.calculators-container {
-    display: flex;
-    justify-content: center;
-    gap: 3rem;
-    flex-wrap: wrap; /* Küçük ekranlarda alt alta geçmesi için */
+
+/* --- MOBİL UYUMLULUK (MEDIA QUERIES) --- */
+/**************************************************/
+
+/* Tablet ve Altı (992px'den küçük ekranlar) */
+@media (max-width: 992px) {
+    .hero-content,
+    .contact-wrapper,
+    .calculators-container {
+        flex-direction: column; /* Yan yana duran ana blokları alt alta getir */
+    }
+
+    .hero-image {
+        width: 350px;
+        height: 350px;
+        margin: 0 auto;
+    }
+    
+    .hero-text {
+        text-align: center;
+    }
 }
 
-.calculator-card {
-    background-color: var(--card-bg);
-    padding: 2rem 2.5rem;
-    border-radius: 8px;
-    border: 1px solid #e0daca;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    flex: 1;
-    min-width: 350px; /* Kartların minimum genişliği */
-    max-width: 500px; /* Kartların maksimum genişliği */
-}
 
-.calculator-card h2 {
-    text-align: center;
-    margin-bottom: 2rem;
-    color: var(--primary-color);
-}
+/* Mobil Telefonlar (768px'den küçük ekranlar) - YENİ VE DÜZENLENMİŞ BLOK */
+@media (max-width: 768px) {
+    /* Yazı boyutlarını mobil için küçült */
+    .hero-text h1 {
+        font-size: 2.5rem;
+    }
 
-.calculator-card .form-group {
-    margin-bottom: 1.5rem;
-}
+    .page-title {
+        font-size: 2.2rem;
+    }
 
-.calculator-card .form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-}
+    /* === HEADER VE NAVİGASYON DÜZENLEMESİ (ANA ÇÖZÜM BURADA) === */
+    header {
+        /* Header'ın iç boşluğunu biraz azaltarak daha kompakt hale getirelim */
+        padding: 1rem 5%;
+    }
 
-.calculator-card input,
-.calculator-card select {
-    width: 100%;
-    padding: 0.8rem;
-    border-radius: 5px;
-    border: 1px solid #dcd1c1;
-    background-color: #fff;
-    font-family: inherit;
-    font-size: 1rem;
-}
+    nav {
+        /* Navigasyon elemanlarını (logo ve menü) yan yana tutalım ama sığmazsa alt satıra atsın */
+        display: flex;
+        flex-wrap: wrap; /* En önemli değişikliklerden biri: Elemanlar sığmazsa alt satıra kayar */
+        justify-content: space-between; /* Logo solda, menü sağda kalmaya çalışır */
+        align-items: center;
+        gap: 1rem; /* Logo ve menü arasında boşluk bırakır */
+    }
 
-.calculator-card input:focus,
-.calculator-card select:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px rgba(210, 180, 140, 0.5);
-}
+    nav ul {
+        /* Menü listesini dikey (column) yerine yatay (row) yapalım */
+        display: flex;
+        flex-direction: row; /* Elemanları yan yana dizer */
+        flex-wrap: wrap;     /* Menü elemanları sığmazsa bir alt satıra geçer */
+        justify-content: center; /* Ortalanmış bir görünüm için */
+        list-style: none;
+        gap: 1.5rem; /* Menü elemanları arasına boşluk ekleyelim */
+        width: 100%; /* Menünün tamamının ortalanabilmesi için genişliği %100 yapalım */
+        padding: 0; /* İç boşluğu sıfırla */
+    }
 
-.calculator-card .cta-button {
-    width: 100%;
-    margin-top: 1rem;
-    font-size: 1.1rem;
-}
+    nav ul li {
+        margin: 0; /* Eski margin değerini sıfırla */
+        width: auto; /* Elemanların kendi içeriği kadar yer kaplamasını sağla */
+    }
 
-.result-area {
-    margin-top: 2rem;
-    padding: 1.5rem;
-    border-radius: 8px;
-    background-color: var(--background-color);
-    text-align: center;
-    min-height: 80px;
-    transition: all 0.3s ease;
-}
+    nav ul li a {
+        padding: 0.25rem 0; /* Linklerin tıklama alanını düzenleyelim */
+    }
+    
+    /* Ana içerik alanının üst/alt boşluğunu azalt */
+    main {
+        padding: 2rem 5%;
+    }
+    
+    /* Anasayfa fotoğrafını ve boşluğunu düzenle */
+    .hero-content {
+        gap: 2rem;
+    }
 
-.result-area p {
-    margin: 0.5rem 0;
-    font-size: 1.1rem;
-}
+    .hero-image {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+        aspect-ratio: 1 / 1;
+    }
 
-.result-area .error {
-    color: #D8000C;
-    font-weight: bold;
-}
+    /* Hakkımda sayfası fotoğrafını küçült */
+    .about-image {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .about-container p {
+        text-align: left;
+    }
+    
+    .calculator-card, .service-card {
+        padding: 1.5rem;
+    }
 
-/* VKİ Sonuç Renkleri */
-.bmi-category {
-    padding: 3px 8px;
-    border-radius: 4px;
-    color: white;
-    font-weight: bold;
-}
-.bmi-category.zayif { background-color: #3498db; }
-.bmi-category.normal { background-color: #2ecc71; }
-.bmi-category.kilolu { background-color: #f1c40f; color: #4A4441; }
-.bmi-category.obez { background-color: #e74c3c; }
-
-/* Kalori Sonucu Stili */
-.calorie-total {
-    font-size: 2.5rem !important;
-    font-weight: bold;
-    color: var(--primary-color);
+    .contact-wrapper {
+        gap: 2rem;
+    }
 }
