@@ -180,7 +180,7 @@ main {
 }
 
 /* --- Hizmetler Sayfası Stilleri --- */
-/* NOT: Bu bölüm zaten auto-fit sayesinde büyük ölçüde mobil uyumluydu! */
+
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -297,15 +297,15 @@ footer {
 }
 
 
-/* --- MOBİL UYUMLULUK (MEDIA QUERIES) --- */
-/**************************************************/
+/* --- MOBİL UYUMLULUK --- */
 
-/* Tablet ve Altı (992px'den küçük ekranlar) */
+
+/* Tablet ve Altı */
 @media (max-width: 992px) {
     .hero-content,
     .contact-wrapper,
     .calculators-container {
-        flex-direction: column; /* Yan yana duran ana blokları alt alta getir */
+        flex-direction: column;
     }
 
     .hero-image {
@@ -320,7 +320,7 @@ footer {
 }
 
 
-/* Mobil Telefonlar (768px'den küçük ekranlar) - YENİ VE DÜZENLENMİŞ BLOK */
+/* Mobil Telefonlar (768px'den küçük ekranlar) */
 @media (max-width: 768px) {
     /* Yazı boyutlarını mobil için küçült */
     .hero-text h1 {
@@ -331,14 +331,14 @@ footer {
         font-size: 2.2rem;
     }
 
-    /* === HEADER VE NAVİGASYON DÜZENLEMESİ (ANA ÇÖZÜM BURADA) === */
+    /* === HEADER VE NAVİGASYON DÜZENLEMESİ === */
     header {
-        /* Header'ın iç boşluğunu biraz azaltarak daha kompakt hale getirelim */
+    
         padding: 1rem 5%;
     }
 
     nav {
-        /* Navigasyon elemanlarını (logo ve menü) yan yana tutalım ama sığmazsa alt satıra atsın */
+
         display: flex;
         flex-wrap: wrap; /* En önemli değişikliklerden biri: Elemanlar sığmazsa alt satıra kayar */
         justify-content: space-between; /* Logo solda, menü sağda kalmaya çalışır */
@@ -347,13 +347,13 @@ footer {
     }
 
     nav ul {
-        /* Menü listesini dikey (column) yerine yatay (row) yapalım */
+
         display: flex;
         flex-direction: row; /* Elemanları yan yana dizer */
         flex-wrap: wrap;     /* Menü elemanları sığmazsa bir alt satıra geçer */
         justify-content: center; /* Ortalanmış bir görünüm için */
         list-style: none;
-        gap: 1.5rem; /* Menü elemanları arasına boşluk ekleyelim */
+        gap: 1.5rem;
         width: 100%; /* Menünün tamamının ortalanabilmesi için genişliği %100 yapalım */
         padding: 0; /* İç boşluğu sıfırla */
     }
@@ -364,7 +364,7 @@ footer {
     }
 
     nav ul li a {
-        padding: 0.25rem 0; /* Linklerin tıklama alanını düzenleyelim */
+        padding: 0.25rem 0;
     }
     
     /* Ana içerik alanının üst/alt boşluğunu azalt */

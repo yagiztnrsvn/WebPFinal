@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const bmiForm = document.getElementById('bmi-form');
     if (bmiForm) {
         bmiForm.addEventListener('submit', (event) => {
-            // ==== DÜZELTME: Bu satır, formun gönderilip sayfanın yenilenmesini engeller. ====
+
             event.preventDefault();
 
             // Gerekli elemanları ve değerleri al
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const calorieForm = document.getElementById('calorie-form');
     if (calorieForm) {
         calorieForm.addEventListener('submit', (event) => {
-            // ==== DÜZELTME: Bu satır, formun gönderilip sayfanın yenilenmesini engeller. ====
+
             event.preventDefault();
 
             // Gerekli elemanları ve değerleri al
