@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hesaplayıcılar - Diyetisyen Ece Tan</title>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html">Diyetisyen Ece Tan</a>
+            </div>
+            <ul>
+                <li><a href="index.html">Anasayfa</a></li>
+                <li><a href="hakkimda.html">Hakkımda</a></li>
+                <li><a href="hizmetler.html">Hizmetler</a></li>
+                <li><a href="hesaplayicilar.html" class="active">Hesaplayıcılar</a></li>
+                <li><a href="iletisim.html">İletişim</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-content">
+            <h1 class="page-title">Sağlık Hesaplayıcıları</h1>
+            <p class="page-subtitle">Aşağıdaki araçları kullanarak vücut kitle indeksinizi ve günlük kalori ihtiyacınızı kolayca hesaplayabilirsiniz.</p>
+
+            <div class="calculators-container">
+                <div class="calculator-card">
+                    <h2>Vücut Kitle İndeksi (VKİ)</h2>
+                    <form id="bmi-form">
+                        <div class="form-group">
+                            <label for="height">Boyunuz (cm)</label>
+                            <input type="number" id="height" placeholder="Örn: 175" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="weight">Kilonuz (kg)</label>
+                            <input type="number" id="weight" placeholder="Örn: 70" required>
+                        </div>
+                        <button type="submit" class="cta-button">Hesapla</button>
+                    </form>
+                    <div id="bmi-result" class="result-area">
+                        </div>
+                </div>
+
+                <div class="calculator-card">
+                    <h2>Günlük Kalori İhtiyacı</h2>
+                    <form id="calorie-form">
+                        <div class="form-group">
+                            <label for="age">Yaşınız</label>
+                            <input type="number" id="age" placeholder="Örn: 28" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Cinsiyetiniz</label>
+                            <select id="gender" required>
+                                <option value="male">Erkek</option>
+                                <option value="female">Kadın</option>
+                            </select>
+                        </div>
+                         <div class="form-group">
+                            <label for="calorie-height">Boyunuz (cm)</label>
+                            <input type="number" id="calorie-height" placeholder="Örn: 175" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="calorie-weight">Kilonuz (kg)</label>
+                            <input type="number" id="calorie-weight" placeholder="Örn: 70" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="activity">Aktivite Seviyeniz</label>
+                            <select id="activity" required>
+                                <option value="1.2">Hareketsiz (Masa başı iş)</option>
+                                <option value="1.375">Az Aktif (Haftada 1-3 gün egzersiz)</option>
+                                <option value="1.55">Orta Aktif (Haftada 3-5 gün egzersiz)</option>
+                                <option value="1.725">Çok Aktif (Haftada 6-7 gün egzersiz)</option>
+                                <option value="1.9">Ekstra Aktif (Ağır iş veya sporcu)</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="cta-button">Hesapla</button>
+                    </form>
+                    <div id="calorie-result" class="result-area">
+                        </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Diyetisyen Ece Tan. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
